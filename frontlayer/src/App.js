@@ -4,27 +4,19 @@ const App = () => {
 
     const onButtonClick = (event) => {
         event.stopPropagation();
-        populateUser(inputUnpState);
+        populateUser(inputIdState);
     }
 
-    const [state, setState] = useState({ unps: [], loading: true });
+    const [state, setState] = useState({ data: [], loading: true });
 
-    const [inputUnpState, setInputUnpState] = useState('');
+    const [inputIdState, setInputIdState] = useState('');
 
-    const [inputEmailState, setInputEmailState] = useState('');
+    const [inputDateState, setInputDateState] = useState('');
 
-    const [isSeven, setIsSeven] = useState(false);
-
-    const currentTime = new Date().getHours();
-   
-    useEffect(() => {
-        currentTime === 16 ? setIsSeven(true) : setIsSeven(false);
-    }, [])
-
-    const onInputUnpChange = (event) => {
+    const onInputIdChange = (event) => {
         event.stopPropagation();
         const { target: { value } } = event;
-        setInputUnpState(value);
+        setInputIdState(value);
     }
 
     async function populateUser(inputState) {
@@ -39,10 +31,10 @@ const App = () => {
         //console.log("пошел нахуй");
     }
 
-    const onInputEmailChange = (event) => {
+    const onInputDateChange = (event) => {
         event.stopPropagation();
         const { target: { value } } = event;
-        setInputEmailState(value);
+        setInputDateState(value);
     }
 
     return (
@@ -55,20 +47,23 @@ const App = () => {
                 <tr>
                     <th>User unique number</th>
                     <th>User Email</th>
-                    <th>Exist in local data base</th>
-                    <th>Exsist in external data base</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input onChange={(event) => onInputUnpChange(event)} type="text" name="UNP" placeholder="User UNP" /></td>
-                    <td><input onChange={(event) => onInputEmailChange(event)} type="text" name="Email" placeholder="User Email" /></td>
-                    <td><input type="checkbox" checked={state.unps.isLocalUserExist} /></td>
-                    <td><input type="checkbox" checked={!state.unps.isExternalUserExist} /></td>
+                    <td><input onChange={(event) => onInputIdChange(event)} type="text" name="Id" placeholder="Data Identifier" /></td>
+                    <td><input onChange={(event) => onInputDateChange(event)} type="text" name="Date" placeholder="Date of the data" /></td>
                 </tr>
                 <tr>
-                    <td><div onClick={(event) => { onButtonClick(event) }} style={{backgroundColor: 'red', alignContent: 'center'}}>Check</div></td>
-                    <td>{isSeven && (<div style={{margin: '0 0 0 30px'}}>Your status changed</div>)}</td>
+                    <td>
+                        <div onClick={(event) => { onButtonClick(event) }} 
+                            style={{alignContent: 'center', 
+                                    borderStyle: 'solid',
+                                    marginRight: '60%',
+                                    borderWidth: 'medium'}}>
+                            Check
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table >
