@@ -12,6 +12,7 @@ const Login = () => {
         const data = await response.json();
         console.log(data);
         setIsAuthenticatedState({ data: data, loading: false });
+        
     }
     document.addEventListener("DOMContentLoaded", isAuthenticated);
 
