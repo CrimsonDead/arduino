@@ -8,24 +8,24 @@ namespace backLayer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SensorDataController : ControllerBase
+    public class RegionController : ControllerBase
     {
-        private readonly ILogger<SensorDataController> _logger;
-        private readonly IRepository<SensorData> _sensorDataRepository;
+        private readonly ILogger<Region> _logger;
+        private readonly IRepository<Region> _regionRepository;
 
-        public SensorDataController(ILogger<SensorDataController> logger, IRepository<SensorData> sensorDataRepository)
+        public RegionController(ILogger<Region> logger, IRepository<Region> regionRepository)
         {
             _logger = logger;
-            _sensorDataRepository = sensorDataRepository;
+            _regionRepository = regionRepository;
         }
 
-        [HttpGet(Name = "GetSensorDataList")]
-        [Route("GetSensorDataList")]
-        public async Task<ActionResult<object>> GetSensorDataListAsync()
+        [HttpGet(Name = "GetRegionList")]
+        [Route("GetRegionList")]
+        public async Task<ActionResult<object>> GetRegionListAsync()
         {
             try
             {
-                var dataList = _sensorDataRepository.GetItems();
+                var dataList = _regionRepository.GetItems();
                 if (dataList.Count() == 0)
                     throw new Exception("Server has no data");
                 return Ok(dataList);
@@ -36,13 +36,13 @@ namespace backLayer.Controllers
             }
         }
 
-        [HttpGet(Name = "GetSensorData")]
-        [Route("GetSensorData")]
-        public async Task<ActionResult<object>> GetSensorDataAsync([FromQuery] int id)
+        [HttpGet(Name = "GetRegion")]
+        [Route("GetRegion")]
+        public async Task<ActionResult<object>> GetRegionAsync([FromQuery] int id)
         {
             try
             {
-                var data = _sensorDataRepository.GetItem(id);
+                var data = _regionRepository.GetItem(id);
                 if (data is null)
                     throw new Exception($"Server has no data with id {id}");
                 return Ok(data);
@@ -53,13 +53,13 @@ namespace backLayer.Controllers
             }
         }
 
-        [HttpPost(Name = "AddSensorData")]
-        [Route("AddSensorData")]
-        public async Task<ActionResult> AddSensorDataAsync([FromForm] SensorData sensorData)
+        [HttpPost(Name = "AddRegion")]
+        [Route("AddRegion")]
+        public async Task<ActionResult> AddRegionAsync([FromForm] Region region)
         {
             try 
             {
-                _sensorDataRepository.AddItem(sensorData);
+                _regionRepository.AddItem(region);
                 return Ok();
             }
             catch (Exception ex)
@@ -68,13 +68,13 @@ namespace backLayer.Controllers
             }
         }
 
-        [HttpPut(Name = "ChangeSensorData")]
-        [Route("ChangeSensorData")]
-        public async Task<ActionResult> ChangeSensorDataAsync([FromForm] SensorData sensorData)
+        [HttpPut(Name = "ChangeRegion")]
+        [Route("ChangeRegion")]
+        public async Task<ActionResult> ChangeRegionAsync([FromForm] Region region)
         {
             try 
             {
-                _sensorDataRepository.Update(sensorData);
+                _regionRepository.Update(region);
                 return Ok();
             }
             catch (Exception ex)
@@ -83,13 +83,13 @@ namespace backLayer.Controllers
             }
         }
 
-        [HttpDelete(Name = "DeleteSensorData")]
-        [Route("DeleteSensorData")]
-        public async Task<ActionResult> DeleteSensorDataAsync([FromForm] SensorData sensorData)
+        [HttpDelete(Name = "DeleteRegion")]
+        [Route("DeleteRegion")]
+        public async Task<ActionResult> DeleteRegionAsync([FromForm] Region region)
         {
             try 
             {
-                _sensorDataRepository.Delete(sensorData);
+                _regionRepository.Delete(region);
                 return Ok();
             }
             catch (Exception ex)

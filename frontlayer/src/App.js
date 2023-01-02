@@ -21,13 +21,14 @@ const App = () => {
 
     async function populateUser(inputState) {
         //console.log("пошел нахуй");
-        var url = `api/sensordata?is=${inputState}`;
+        var url = `api/User/GetUserList`;
+        // var url = `api/SensorData/GetSensorData?id=${inputState}`;
         //var url = `api/user?unp=${inputState}`;
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
         setState({ unps: data, loading: false });
-        console.log(state.unps.value);
+        console.log(state.data.value);
         //console.log("пошел нахуй");
     }
 
@@ -38,36 +39,39 @@ const App = () => {
     }
 
     return (
-        <table className='table table-striped' aria-labelledby="tabelLabel" style={{
-            border: '4px double #333', 
-            borderCollapse: 'separate',
-            width: '100%',
-            borderSpacing: '7px 11px'}}>
-            <thead>
-                <tr>
-                    <th>User unique number</th>
-                    <th>User Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input onChange={(event) => onInputIdChange(event)} type="text" name="Id" placeholder="Data Identifier" /></td>
-                    <td><input onChange={(event) => onInputDateChange(event)} type="text" name="Date" placeholder="Date of the data" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onClick={(event) => { onButtonClick(event) }} 
-                            style={{alignContent: 'center', 
-                                    borderStyle: 'solid',
-                                    marginRight: '60%',
-                                    borderWidth: 'medium'}}>
-                            Check
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table >
-    );
+        <div>
+            <table className='table table-striped' aria-labelledby="tabelLabel" style={{
+                border: '4px double #333', 
+                borderCollapse: 'separate',
+                width: '100%',
+                borderSpacing: '7px 11px'}}>
+                <thead>
+                    <tr>
+                        <th>User unique number</th>
+                        <th>User Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input onChange={(event) => onInputIdChange(event)} type="text" name="Id" placeholder="Data Identifier" /></td>
+                        <td><input onChange={(event) => onInputDateChange(event)} type="text" name="Date" placeholder="Date of the data" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onClick={(event) => { onButtonClick(event) }} 
+                                style={{alignContent: 'center', 
+                                        borderStyle: 'solid',
+                                        marginRight: '60%',
+                                        borderWidth: 'medium',
+                                        backgroundColor: 'rgb(240, 240, 240)'}}>
+                                Check
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table >
+        </div>
+    );  
 }
 
 

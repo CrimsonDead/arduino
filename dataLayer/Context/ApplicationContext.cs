@@ -8,6 +8,7 @@ namespace dataLayer.Context
         public DbSet<Sensor> Sensor { get; set; }
         public DbSet<Region> Region { get; set; }
         public DbSet<SensorData> SensorData { get; set; }
+        public DbSet<User> User { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
                 
@@ -19,6 +20,13 @@ namespace dataLayer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = 1,
+                UserName = "Admin",
+                Password = "Admin"
+            });
+
             modelBuilder.Entity<Region>().HasData(new Region
             {
                 Id = 1,
