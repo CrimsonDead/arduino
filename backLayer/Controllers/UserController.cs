@@ -13,10 +13,10 @@ namespace backLayer.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly ILogger<SensorDataController> _logger;
+        private readonly ILogger<User> _logger;
         private readonly UserRepository _userRepository;
 
-        public UserController(ILogger<SensorDataController> logger, IRepository<User> userRepository)
+        public UserController(ILogger<User> logger, IRepository<User> userRepository)
         {
             _logger = logger;
             _userRepository = (UserRepository)userRepository;
@@ -41,11 +41,11 @@ namespace backLayer.Controllers
 
         [HttpGet(Name = "Register")]
         [Route("Register")]
-        public async Task<ActionResult> Register([FromForm] string userName, [FromForm] string password)
+        public async Task<ActionResult> Register([FromForm] string userName, [FromForm] string password, [FromForm] string email)
         {
             try
             {
-                User user = new User{ UserName = userName, Password = password};
+                User user = new User{ UserName = userName, Password = password, Email = email};
                 _userRepository.AddItem(user);
                 await Login(userName, password);
                 return Ok();

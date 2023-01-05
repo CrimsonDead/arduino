@@ -24,7 +24,8 @@ namespace dataLayer.Context
             {
                 Id = 1,
                 UserName = "Admin",
-                Password = "Admin"
+                Password = "Admin",
+                Email = "kir120056@gmail.com"
             });
 
             modelBuilder.Entity<Region>().HasData(new Region

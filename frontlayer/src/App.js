@@ -21,6 +21,7 @@ const App = () => {
 
     async function populateUser(inputState) {
         //console.log("пошел нахуй");
+        //var url = `api/Email/Send`;
         var url = `api/User/GetUserList`;
         // var url = `api/SensorData/GetSensorData?id=${inputState}`;
         //var url = `api/user?unp=${inputState}`;
