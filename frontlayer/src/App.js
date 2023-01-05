@@ -20,17 +20,10 @@ const App = () => {
     }
 
     async function populateUser(inputState) {
-        //console.log("пошел нахуй");
-        //var url = `api/Email/Send`;
         var url = `api/User/GetUserList`;
-        // var url = `api/SensorData/GetSensorData?id=${inputState}`;
-        //var url = `api/user?unp=${inputState}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
         setState({ unps: data, loading: false });
-        console.log(state.data.value);
-        //console.log("пошел нахуй");
     }
 
     const onInputDateChange = (event) => {
@@ -72,6 +65,7 @@ const App = () => {
                 </tbody>
             </table >
         </div>
+        // <></>
     );  
 }
 
