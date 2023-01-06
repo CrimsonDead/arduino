@@ -1,6 +1,8 @@
 let map = null
 let marker = null
 
+// const L = '';
+
 export function getMap(position, tooltip) {
   if (map === null) {
     map = L.map('map').setView(position, 15)

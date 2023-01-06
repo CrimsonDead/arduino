@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getMap } from './map.js'
 
 const UserForm = () => {
 
+    const qwe = [
+        53.886976,
+        27.5447808
+    ];
+
     async function success({ coords }) {
-        const { latitude, longitude } = coords
-        const currentPosition = [latitude, longitude]
-        getMap(currentPosition, 'You are here')
+        const { latitude, longitude } = coords;
+        const currentPosition = [latitude, longitude];
+        console.log(currentPosition);
+        getMap(currentPosition, 'current position')
       }
       
       function error({ message }) {
@@ -14,11 +20,14 @@ const UserForm = () => {
       }
 
     const btnHandler = () => {
-        console.log('click');
         navigator.geolocation.getCurrentPosition(success, error, {
             enableHighAccuracy: true
           })
     };
+
+    const handler = () => getMap(qwe, 'current position')
+
+    // useEffect(() => btnHandler(), []);
 
     return (
         <div style={{ width: '100%', height: '100%', display: 'block' }}>
@@ -26,7 +35,8 @@ const UserForm = () => {
                 
             <body>
                 <div id="map"></div>
-                <button id="my_position" onClick={() => btnHandler()}>My Position</button>
+                <button id="my_position" onClick={() => handler()}>My Position</button>
+                <div id="cities"></div>
                 {/* <script src="./script.js" type="module"></script> */}
             </body>
             </div>
