@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoginForm from "./loginForm";
 import UserForm from "./loggedUserForm";
+import ChartForm from "./ChartForm.js";
 
 const SiteWrapper = () => {
 
@@ -22,7 +23,9 @@ const SiteWrapper = () => {
             {isAuthenticatedState ? (
                 <LoginForm setIsAuthenticatedState={setIsAuthenticatedState}/>
             ) : (
-                <UserForm />
+                <ChartForm />
+                // <UserForm />
+                
             )}
 
         </div>

@@ -3,7 +3,7 @@ import { getMap } from './map.js'
 
 const UserForm = () => {
 
-    function success({ coords }) {
+    async function success({ coords }) {
         const { latitude, longitude } = coords
         const currentPosition = [latitude, longitude]
         getMap(currentPosition, 'You are here')
@@ -23,6 +23,7 @@ const UserForm = () => {
     return (
         <div style={{ width: '100%', height: '100%', display: 'block' }}>
             <div style={{ width: '100%', height: '10%', display: 'flex' }}>
+                
             <body>
                 <div id="map"></div>
                 <button id="my_position" onClick={() => btnHandler()}>My Position</button>
