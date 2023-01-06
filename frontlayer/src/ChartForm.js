@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,6 +35,7 @@ export const options = {
   },
 };
 
+
 const dataSet1 = [
   { year: 2010, count: 10 },
   { year: 2011, count: 20 },
@@ -45,20 +46,33 @@ const dataSet1 = [
   { year: 2016, count: 28 },
 ];
 
-const labels = dataSet1.map(({ year }) => year);
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: dataSet1.map(({ count }) => count),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
-
 export default function ChartForm() {
+
+  const [coords, setCoords] = useState();
+
+    async function isAuthenticated() {
+        var url = 'api/SensorData/GetSensorDataList';
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);                    
+        setCoords(data);
+    }
+
+    useEffect( () => {isAuthenticated()}, [])
+
+    const labels = coords.map(({ date }) => date);
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: coords.map(({ temperature }) => temperature),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
+
   return <Line options={options} data={data} />;
 }
