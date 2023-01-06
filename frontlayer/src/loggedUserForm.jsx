@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { getMap } from './map.js'
 
-const UserForm = () => {
+const UserForm = ({coords}) => {
 
     const qwe = [
-        53.886976,
-        27.5447808
+        54.570717,
+        27.276983
     ];
 
     async function success({ coords }) {
         const { latitude, longitude } = coords;
         const currentPosition = [latitude, longitude];
         console.log(currentPosition);
-        getMap(currentPosition, 'current position')
+        getMap(qwe, 'searched position');
+        // getMap(currentPosition, 'current position')
       }
       
       function error({ message }) {
@@ -27,7 +28,7 @@ const UserForm = () => {
 
     const handler = () => getMap(qwe, 'current position')
 
-    // useEffect(() => btnHandler(), []);
+    useEffect(() => btnHandler(), []);
 
     return (
         <div style={{ width: '100%', height: '100%', display: 'block' }}>
