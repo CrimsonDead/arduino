@@ -1,47 +1,64 @@
+import React from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import faker from 'faker';
 
-import React, { Component, useState, useEffect } from 'react';
-import Chart from 'chart.js/auto';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-const ChartForm = () => {
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
 
-    const [state, setState] = useState({ data: [], loading: true });
+const dataSet1 = [
+  { year: 2010, count: 10 },
+  { year: 2011, count: 20 },
+  { year: 2012, count: 15 },
+  { year: 2013, count: 25 },
+  { year: 2014, count: 22 },
+  { year: 2015, count: 30 },
+  { year: 2016, count: 28 },
+];
 
-    async function getChart() {
-        console.log("11");
-        const data = [
-            { year: 2010, count: 10 },
-            { year: 2011, count: 20 },
-            { year: 2012, count: 15 },
-            { year: 2013, count: 25 },
-            { year: 2014, count: 22 },
-            { year: 2015, count: 30 },
-            { year: 2016, count: 28 },
-          ];
-        new Chart(
-            document.getElementById('acquisitions'),
-            {
-              type: 'bar',
-              data: {
-                labels: data.map(row => row.year),
-                datasets: [
-                  {
-                    label: 'Acquisitions by year',
-                    data: data.map(row => row.count)
-                  }
-                ]
-              }
-            }
-        )
-    }
+const labels = dataSet1.map(({ year }) => year);
 
-    getChart();
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: dataSet1.map(({ count }) => count),
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+  ],
+};
 
-    return (
-        <div style="width: 800px;">
-            <canvas id="acquisitions">
-            </canvas>
-        </div>
-    )
+export default function ChartForm() {
+  return <Line options={options} data={data} />;
 }
-
-export default ChartForm;
