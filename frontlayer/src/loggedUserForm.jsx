@@ -38,7 +38,6 @@ const UserForm = ({coords}) => {
                 <div id="map"></div>
                 <button id="my_position" onClick={() => handler()}>My Position</button>
                 <div id="cities"></div>
-                {/* <script src="./script.js" type="module"></script> */}
             </body>
             </div>
         </div>
