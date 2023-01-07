@@ -13,11 +13,12 @@ const UserForm = ({coords}) => {
         const currentPosition = [latitude, longitude];
         console.log(currentPosition);
         getMap(qwe, 'searched position');
-      }
-      
-      function error({ message }) {
-        console.log(message)
-      }
+        // getMap(currentPosition, 'current position')
+    }
+    
+    function error({ message }) {
+      console.log(message)
+    }
 
     const btnHandler = () => {
         navigator.geolocation.getCurrentPosition(success, error, {

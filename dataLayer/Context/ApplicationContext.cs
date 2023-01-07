@@ -69,6 +69,34 @@ namespace dataLayer.Context
                 Date = new DateTime(2022, 12, 29),
                 Temperature = 1
             });
+            modelBuilder.Entity<SensorData>().HasData(new SensorData
+            {
+                Id = 5,
+                SensorId = 1,
+                Date = new DateTime(2022, 12, 30),
+                Temperature = -5
+            });
+            modelBuilder.Entity<SensorData>().HasData(new SensorData
+            {
+                Id = 6,
+                SensorId = 1,
+                Date = new DateTime(2023, 01, 01),
+                Temperature = 0
+            });
+            modelBuilder.Entity<SensorData>().HasData(new SensorData
+            {
+                Id = 7,
+                SensorId = 1,
+                Date = new DateTime(2023, 01, 02),
+                Temperature = 3
+            });
+            modelBuilder.Entity<SensorData>().HasData(new SensorData
+            {
+                Id = 8,
+                SensorId = 1,
+                Date = new DateTime(2023, 01, 03),
+                Temperature = -7
+            });
         }
     }
 }
