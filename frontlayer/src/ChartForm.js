@@ -37,37 +37,50 @@ export const options = {
 
 
 const dataSet1 = [
-  { year: 2010, count: 10 },
-  { year: 2011, count: 20 },
-  { year: 2012, count: 15 },
-  { year: 2013, count: 25 },
-  { year: 2014, count: 22 },
-  { year: 2015, count: 30 },
-  { year: 2016, count: 28 },
+  { year: 2010, count: 10, uuu: 3 },
+  { year: 2011, count: 20, uuu: 3 },
+  { year: 2012, count: 15, uuu: 3 },
+  { year: 2013, count: 25, uuu: 3 },
+  { year: 2014, count: 22, uuu: 3 },
+  { year: 2015, count: 30, uuu: 3 },
+  { year: 2016, count: 28, uuu: 3 },
+  { year: 2015, count: 18, uuu: 3 },
+  { year: 2016, count: 25, uuu: 3 },
 ];
 
 export default function ChartForm() {
 
-  const [coords, setCoords] = useState();
+  const [tempData, setTempData] = useState();
 
     async function isAuthenticated() {
-        var url = 'api/SensorData/GetSensorDataList';
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);                    
-        setCoords(data);
+      var url = 'api/SensorData/GetSensorDataList';
+      const response = await fetch(url);
+      const data = await response.json();
+
+      console.log("dss:");                    
+      console.log(dataSet1);   
+
+      console.log("dd:");                    
+      console.log(data);   
+
+      setTempData(data);
+
+      console.log("ddstate:");                    
+      console.log(tempData);  
     }
 
     useEffect( () => {isAuthenticated()}, [])
 
-    const labels = coords.map(({ date }) => date);
+  const labels = tempData?.map(({ date }) => date);
+  // const labels = dataSet1.map(({ year }) => year);
 
   const data = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
-        data: coords.map(({ temperature }) => temperature),
+        data: tempData?.map(({ temperature }) => temperature),
+        // data: dataSet1.map(({ count }) => count),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
